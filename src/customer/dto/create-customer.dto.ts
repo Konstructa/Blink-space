@@ -1,1 +1,6 @@
-export class CreateCustomerDto {}
+export class CreateCustomerDto {
+  name: string;
+  username: string;
+  password: string;
+  email: string;
+}
