@@ -1,6 +1,7 @@
-import { Injectable, Inject } from '@nestjs/common';
+import { Injectable, Inject, HttpStatus, HttpException } from '@nestjs/common';
 import { Repository } from 'typeorm';
 import { CreateCustomerDto } from './dto/create-customer.dto';
+import { ResultDto } from './dto/result-customer.dto';
 import { UpdateCustomerDto } from './dto/update-customer.dto';
 import { Customer } from './entities/customer.entity';
 
@@ -13,16 +14,30 @@ export class CustomerService {
 
   async create(createCustomerDto: CreateCustomerDto) {
     const newCustomer = this.customerRepository.create(createCustomerDto);
-    await this.customerRepository.save(newCustomer);
-    return 'This action adds a new customer';
-  }
 
-  findAll() {
-    return `This action returns all customer`;
+    const checkUsername = await this.customerRepository.findOne({
+      username: newCustomer.username,
+    });
+    const checkEmail = await this.customerRepository.findOne({
+      email: newCustomer.email,
+    });
+
+    if (!checkEmail || !checkUsername) {
+      throw new HttpException(
+        'Usuário ou email já cadastrados!',
+        HttpStatus.BAD_REQUEST,
+      );
+    }
+
+    await this.customerRepository.save(newCustomer);
+    return <ResultDto>{
+      status: true,
+      mensage: 'Usuário criado com sucesso',
+    };
   }
 
   findOne(id: number) {
-    return `This action returns a #${id} customer`;
+    return this.customerRepository.findOne(id);
   }
 
   update(id: number, updateCustomerDto: UpdateCustomerDto) {
