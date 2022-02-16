@@ -20,11 +20,6 @@ export class CustomerController {
     return this.customerService.create(createCustomerDto);
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.customerService.findOne(+id);
-  }
-
   @Patch(':id')
   update(
     @Param('id') id: string,
