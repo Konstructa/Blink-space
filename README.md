@@ -1,4 +1,4 @@
-<h1 align = "center">  :flying_saucer: Blink SPace
+<h1 align = "center">  :flying_saucer: Blink Space
 
 <p align="center"> 
     <img alt = "Languages" src="https://img.shields.io/github/languages/count/Konstructa/blink-space">
