@@ -22,7 +22,7 @@ export class CustomerService {
       email: newCustomer.email,
     });
 
-    if (!checkEmail || !checkUsername) {
+    if (checkEmail || checkUsername) {
       throw new HttpException(
         'Usuário ou email já cadastrados!',
         HttpStatus.BAD_REQUEST,
@@ -44,7 +44,14 @@ export class CustomerService {
     return `This action updates a #${id} customer`;
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} customer`;
+  async remove(id: number) {
+    const checkId = await this.customerRepository.findOne({ id: id });
+
+    if (checkId) {
+      this.customerRepository.delete(id);
+      return 'Usuário deletado!';
+    }
+
+    throw new HttpException('Usuário não encontrado!', HttpStatus.NOT_FOUND);
   }
 }
