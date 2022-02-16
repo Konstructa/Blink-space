@@ -40,12 +40,19 @@ export class CustomerService {
     return this.customerRepository.findOne(id);
   }
 
-  update(id: number, updateCustomerDto: UpdateCustomerDto) {
-    return `This action updates a #${id} customer`;
+  async update(id: number, updateCustomerDto: UpdateCustomerDto) {
+    const checkId = await this.findOne(id);
+
+    if (checkId) {
+      this.customerRepository.update({ id }, updateCustomerDto);
+      return 'Usuário atualizado com sucesso!';
+    }
+
+    throw new HttpException('Usuário não encontrado!', HttpStatus.NOT_FOUND);
   }
 
   async remove(id: number) {
-    const checkId = await this.customerRepository.findOne({ id: id });
+    const checkId = await this.findOne(id);
 
     if (checkId) {
       this.customerRepository.delete(id);
