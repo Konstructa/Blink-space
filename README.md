@@ -35,6 +35,28 @@ Esse projeto é uma API que simula uma compra, existe cadastro de usuário, prod
 
 Essa loja é de veiculos espaciais, temos os mais rápidos e seguros da galáxia!
 
+## :world_map: Routes
+
+`Global Prefix /api/v1`
+
+METHOD | PATH | 
+|---|---|
+| POST | /customer |
+| DELETE | /customer/:id |
+| PATCH | /customer/:id |
+
+METHOD | PATH | 
+|---|---|
+| POST | /order |
+| DELETE | /order/:id |
+| GET | /customerByOrderID/:id |
+| GET | /productDetailsByOrderID/:id |
+
+METHOD | PATH | 
+|---|---|
+| POST | /product |
+
+
 ## :hammer: Installation
 
 ```bash
