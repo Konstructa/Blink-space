@@ -1,3 +1,4 @@
+import { dirname } from 'path/posix';
 import { createConnection } from 'typeorm';
 
 export const databaseProviders = [
@@ -9,10 +10,15 @@ export const databaseProviders = [
         host: 'localhost',
         port: 3306,
         username: 'root',
-        password: 'root',
-        database: 'test',
+        password: '@aKFfBUvHw4C',
+        database: 'blink_space',
         entities: [__dirname + '/../**/*.entity{.ts,.js}'],
+        migrations: [__dirname + 'migrations/*{.ts,.js}'],
         synchronize: true,
+        migrationsRun: true,
+        cli: {
+          migrationsDir: './migrations',
+        },
       }),
   },
 ];
