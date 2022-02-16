@@ -16,8 +16,8 @@ export class CustomerController {
   constructor(private readonly customerService: CustomerService) {}
 
   @Post()
-  async create(@Body() createCustomerDto: CreateCustomerDto) {
-    return await this.customerService.create(createCustomerDto);
+  create(@Body() createCustomerDto: CreateCustomerDto) {
+    return this.customerService.create(createCustomerDto);
   }
 
   @Get(':id')
