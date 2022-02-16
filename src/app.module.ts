@@ -11,6 +11,7 @@ import { DatabaseModule } from './database/database.module';
 import { productProviders } from './product/entities/product.providers';
 import { ProductController } from './product/product.controller';
 import { ProductService } from './product/product.service';
+import { orderProviders } from './order/entities/order.providers';
 
 @Module({
   imports: [DatabaseModule, ProductModule, CustomerModule, OrderModule],
@@ -18,6 +19,7 @@ import { ProductService } from './product/product.service';
   providers: [
     ...customerProviders,
     ...productProviders,
+    ...orderProviders,
     CustomerService,
     OrderService,
     ProductService,
