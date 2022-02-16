@@ -6,7 +6,6 @@ import {
   JoinColumn,
   CreateDateColumn,
 } from 'typeorm';
-import { IsInt } from 'class-validator';
 import { Customer } from 'src/customer/entities/customer.entity';
 import { Product } from 'src/product/entities/product.entity';
 
@@ -16,7 +15,6 @@ class Order {
   id: number;
 
   @Column()
-  @IsInt({ message: 'A quantidade é em números inteiros!' })
   products_quantity: number;
 
   @ManyToOne(() => Product, { eager: true })
