@@ -1,12 +1,12 @@
 import { IsInt } from 'class-validator';
 
 export class CreateOrderDto {
-  @IsInt({ message: 'A quantidade é em números inteiros!' })
+  @IsInt()
   products_quantity: number;
 
-  @IsInt({ message: 'A identificação é em números inteiros!' })
+  @IsInt()
   product: number;
 
-  @IsInt({ message: 'A identificação é em números inteiros!' })
+  @IsInt()
   customer: number;
 }

@@ -1,6 +1,6 @@
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
-@Entity('Stock')
+@Entity('stock')
 class Product {
   @PrimaryGeneratedColumn()
   id: number;
@@ -10,7 +10,7 @@ class Product {
 
   @Column()
   description: string;
-
+ 
   @Column()
   quantity: number;
 }

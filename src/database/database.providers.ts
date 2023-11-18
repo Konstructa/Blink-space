@@ -1,4 +1,3 @@
-import { dirname } from 'path/posix';
 import { createConnection } from 'typeorm';
 
 export const databaseProviders = [
@@ -9,7 +8,7 @@ export const databaseProviders = [
         type: 'mysql',
         host: 'localhost',
         port: 3306,
-        username: 'root',
+        username: 'milena',
         password: '',
         database: 'blink_space',
         entities: [__dirname + '/../**/*.entity{.ts,.js}'],

@@ -13,27 +13,29 @@ export class CustomerService {
   ) {}
 
   async create(createCustomerDto: CreateCustomerDto) {
-    const newCustomer = this.customerRepository.create(createCustomerDto);
-
     const checkUsername = await this.customerRepository.findOne({
-      username: newCustomer.username,
-    });
-    const checkEmail = await this.customerRepository.findOne({
-      email: newCustomer.email,
+      username: createCustomerDto.username,
     });
 
-    if (checkEmail || checkUsername) {
+    if (checkUsername) {
       throw new HttpException(
-        'Usuário ou email já cadastrados!',
+        'Username já cadastrado!',
         HttpStatus.BAD_REQUEST,
       );
     }
 
+    const checkEmail = await this.customerRepository.findOne({
+      email: createCustomerDto.email,
+    });
+
+    if (checkEmail) {
+      throw new HttpException('Email já cadastrado!', HttpStatus.BAD_REQUEST);
+    }
+    const newCustomer = this.customerRepository.create(createCustomerDto);
+
     await this.customerRepository.save(newCustomer);
-    return <ResultDto>{
-      status: true,
-      mensage: 'Usuário criado com sucesso',
-    };
+
+    return 'Usuário criado com sucesso';
   }
 
   findOne(id: number) {

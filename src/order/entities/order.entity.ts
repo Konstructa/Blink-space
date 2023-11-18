@@ -6,10 +6,10 @@ import {
   JoinColumn,
   CreateDateColumn,
 } from 'typeorm';
-import { Customer } from 'src/customer/entities/customer.entity';
-import { Product } from 'src/product/entities/product.entity';
+import { Customer } from '../../customer/entities/customer.entity';
+import { Product } from '../../product/entities/product.entity';
 
-@Entity('Order')
+@Entity('order')
 class Order {
   @PrimaryGeneratedColumn()
   id: number;

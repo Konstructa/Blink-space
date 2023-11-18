@@ -15,6 +15,6 @@ export class CreateCustomerDto {
 
   @IsString()
   @IsNotEmpty()
-  @IsEmail({ message: 'Insira um email válido' })
+  @IsEmail()
   email: string;
 }
