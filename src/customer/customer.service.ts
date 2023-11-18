@@ -1,7 +1,6 @@
 import { Injectable, Inject, HttpStatus, HttpException } from '@nestjs/common';
 import { Repository } from 'typeorm';
 import { CreateCustomerDto } from './dto/create-customer.dto';
-import { ResultDto } from './dto/result-customer.dto';
 import { UpdateCustomerDto } from './dto/update-customer.dto';
 import { Customer } from './entities/customer.entity';
 
@@ -13,17 +12,6 @@ export class CustomerService {
   ) {}
 
   async create(createCustomerDto: CreateCustomerDto) {
-    const checkUsername = await this.customerRepository.findOne({
-      username: createCustomerDto.username,
-    });
-
-    if (checkUsername) {
-      throw new HttpException(
-        'Username já cadastrado!',
-        HttpStatus.BAD_REQUEST,
-      );
-    }
-
     const checkEmail = await this.customerRepository.findOne({
       email: createCustomerDto.email,
     });

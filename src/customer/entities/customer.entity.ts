@@ -16,9 +16,6 @@ export class Customer {
   name: string;
 
   @Column()
-  username: string;
-
-  @Column()
   password: string;
 
   @Column()

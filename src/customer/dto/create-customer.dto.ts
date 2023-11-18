@@ -7,10 +7,6 @@ export class CreateCustomerDto {
 
   @IsString()
   @IsNotEmpty()
-  username: string;
-
-  @IsString()
-  @IsNotEmpty()
   password: string;
 
   @IsString()
